@@ -32,16 +32,16 @@ console.log(555); //同步 */
 
 
 
-/* //5 4 2 1
-process.nextTick(() => {//微任务
+//5 4 2 1
+/* process.nextTick(() => { //微任务
     console.log('process.nextTick() 444');
 })
 
-setTimeout(() => {//宏任务
+setTimeout(() => { //宏任务
     console.log('setTimeout()  222');
 }, 0)
 
-setImmediate(() => {//宏任务
+setImmediate(() => { //宏任务
     console.log('setImmediate() 111');
 })
 
@@ -51,7 +51,7 @@ console.log('全局代码执行完了 555'); */
 
 
 
-//1 4 8 5 2 3 9 6
+//1 4 8 5 2 6 3 9 
 process.nextTick(() => {
     console.log(111); //微任务
 });
