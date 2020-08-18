@@ -18,4 +18,4 @@ fs.readFile(filePath, (err, data) => {
     }
     console.log(data); //读到的是一个buffer
     console.log(data.toString()); //啊，雨下的真大我的衣服没有晾今天晚上有台风啊漂亮
-})
+})  
