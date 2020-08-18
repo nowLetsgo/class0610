@@ -25,11 +25,11 @@ const filePath = path.resolve(__dirname, './txt', "01.txt");
 console.log(filePath) //获取正确的路径
 
 //打开文件
-const fd = fs.openSync(filePath, "a", 0o666);
+const fd = fs.openSync(filePath, "w", 0o666);
 console.log(fd) //代表当前文件的识别码
 
 //写入文件
-const result = fs.writeSync(fd, "今天天气真好111");
+const result = fs.writeSync(fd, "今天天真好111", 3);
 console.log(result); //18  字节数
 
 //关闭文件
