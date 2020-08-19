@@ -24,3 +24,4 @@ myEmitter.once("haha", () => {
 
 myEmitter.emit("haha");
 myEmitter.emit("haha");
+
