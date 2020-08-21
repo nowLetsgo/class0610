@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+        #container.box
+            p
+                if isShow
+                    em 我是一个em标签
+                else   
+                    span 我是span标签
+
+            
+            ul
+                each item,index in Person
+                    li #{index}--#{item.name}--#{item.age}
