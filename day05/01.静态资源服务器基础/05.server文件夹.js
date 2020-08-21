@@ -11,25 +11,43 @@ const path = require("path");
 const {promisify}  = require("util");
 
 //封装promise，解决回调问题
-const readFile = promisify(fs.readFile)
+const readDir = promisify(fs.readdir)
 
 //创建一个服务
 const server = http.createServer(async (req, res) => {
 
     try {
         //获取读取的文件的路径
-        const filePath = path.resolve(__dirname, "./01.server.js")
+        const filePath = path.resolve(__dirname)
         //封返回promise对象的readFile方法，书写await等待promise返回值
-        const data = await readFile(filePath);
+        const files = await readDir(filePath);
+        //readdir方法读取的是文件夹，会返回一个包含当前文件夹内所有文件的目录组成的数组
+        console.log(files);//['01.server.js','02.server.js']
+        //如果读取的是文件夹，那么把文件夹的内容放在一个个的li中 返回出去
+        /*
+            //forEach写法
+            let htmlstr = '';
+            files.forEach((item,index)=>{
+                htmlstr += `<li>${item}</li>`;
+            })
+            console.log(htmlstr);
+        */
+
+        //reduce写法
+        const htmlstr = files.reduce((p,c)=>{
+            return p + `<li>${c}</li>`;
+        },"")
+        console.log(htmlstr);
+
         //如果promise返回成功状态，则继续向下执行
-        //在响应头设置相应内容的contentType 
-        res.setHeader("Content-Type", "application/javascript;charset=utf-8");
+        //在响应头设置相应内容的contentType  修改为html的响应类型
+        res.setHeader("Content-Type", "text/html;charset=utf-8");
         //设置响应状态码
         res.statusCode = 200;
         //响应内容
-        res.end(data);
+        res.end(htmlstr);
     } catch (err) {
-        console.log("读取文件失败" + err);
+        console.log("服务器配置出错" + err);
         //在响应头设置相应内容的contentType 
         res.setHeader("Content-Type", "application/javascript;charset=utf-8");
         //让用户接受到404错误 这样就可以更清楚错误类型

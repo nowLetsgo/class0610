@@ -44,8 +44,6 @@ const server = http.createServer((req, res) => {
         //响应失败内容
         res.end("文件资源加载失败")
     })
-
-
 })
 
 //启动服务
