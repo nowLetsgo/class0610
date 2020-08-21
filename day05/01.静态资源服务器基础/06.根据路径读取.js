@@ -40,7 +40,7 @@ const server = http.createServer(async (req, res) => {
         //使用stats方法 把路径传入，返回一个stats对象，我们根据stats对象的isFile和isDir方法判断
         const stat = await stats(filePath);
         //stat中 有两个方法可以判断是文件还是文件夹
-        if (stat.isFile()) {
+        if (stat.isFile()) { 
             //封返回promise对象的readFile方法，书写await等待promise返回值
             const data = await readFile(filePath);
             //如果promise返回成功状态，则继续向下执行
