@@ -17,6 +17,9 @@ const matchMimeType = require("../utils/mimeType");
 //引入压缩compress模块
 const compress = require("../utils/compress");
 
+//引入缓存cache模块
+const cache  = require("../utils/cache");
+
 //封装promise，解决回调问题
 const readDir = promisify(fs.readdir)
 const readFile = promisify(fs.readFile)
@@ -39,8 +42,14 @@ module.exports = async (req, res) => {
         const stat = await stats(filePath);
         //stat中 有两个方法可以判断是文件还是文件夹
         if (stat.isFile()) {
+            //设置是否读取缓存
+            const isCache = cache(stat,req,res);
+            if(isCache) return;//如果读取缓存 则不再向下进行
+
+
             //封返回promise对象的readFile方法，书写await等待promise返回值
             let rs = fs.createReadStream(filePath);
+            console.log(stat.mtime);
             console.log(stat.size);
             //当文件的大小大于1kb的时候 才进行压缩
             if (stat.size > 1024) {
@@ -48,7 +57,7 @@ module.exports = async (req, res) => {
                 rs = compress(rs, req, res);
             }
 
-
+            
             //如果promise返回成功状态，则继续向下执行
             //在响应头设置相应内容的contentType 
             const extName = matchMimeType(url)
