@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: red
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">红色（默认）</button>
+    <button id="btn2">原谅色</button>
+    <button id="btn3">硅谷色</button>
+    <button id="btn4">不健康色</button>
+    <button id="btn5">清除所有用户设置的颜色</button>
+    <script>
+        const oBtn1 = document.getElementById("btn1");
+        const oBtn2 = document.getElementById("btn2");
+        const oBtn3 = document.getElementById("btn3");
+        const oBtn4 = document.getElementById("btn4");
+        const oBtn5 = document.getElementById("btn5");
+        //需求：当用户选择颜色之后，下一次访问还是这个颜色
+
+        //每次用户设置的时候，要在本地存储中保存当前的颜色，等下次打开页面的时候，首先读取存储的颜色，然后设置给body
+        //setItem(key,value):设置localStorage 如果设置的key重复 则覆盖操作
+        oBtn1.onclick = function () {
+            document.body.style.background = "red";
+            localStorage.setItem("bgColor", "red")
+        }
+        oBtn2.onclick = function () {
+            document.body.style.background = "green";
+            localStorage.setItem("bgColor", "green")
+        }
+        oBtn3.onclick = function () {
+            document.body.style.background = "pink";
+            localStorage.setItem("bgColor", "pink")
+        }
+        oBtn4.onclick = function () {
+            document.body.style.background = "yellow";
+            localStorage.setItem("bgColor", "yellow")
+        }
+        oBtn5.onclick = function(){
+            //移出某一个localStorage
+            // localStorage.removeItem("bgColor");
+            // 清除所有的localStorge
+            localStorage.clear();
+        }
+
+        function initColor() {
+            //每次进入页面 读取页面的localStorage的bgColor的值，从而进行设置
+            const bgColor = localStorage.getItem("bgColor");
+            document.body.style.background = bgColor;
+        }
+        initColor();
+
+
+    </script>
+</body>
+
+</html>

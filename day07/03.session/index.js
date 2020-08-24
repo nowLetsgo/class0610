@@ -36,13 +36,30 @@ http.createServer((req,res)=>{
         //把当前保存用户信息的sessionid 作为cookie值响应给用户
         res.setHeader("Set-Cookie",`session_id=${unqueID};max-age=3600;httpOnly=true`)
         
+        res.end("success")
     }
 
+    if(req.url === '/user'){
+        const userCookie = req.headers.cookie;
+        const cookieResult = userCookie.split("; ").reduce((p, c) => {
+            const [key, value] = c.split("="); //["username","lily"]
+            p[key] = value;
+            return p;
+        }, {});
+        console.log(cookieResult);//{ session_id: '58mg4bfjmfq' }
+        const SessionID = cookieResult["session_id"];
+       
+        if(session[SessionID]){
+            res.setHeader("Content-Type","text/plain;charset=utf-8")
+            res.end("登录成功")
+            return;
+        }
 
+        res.setHeader("Content-Type","text/plain;charset=utf-8")
+        res.end("请重新登录")
+    }
 
-
-
-    res.end("success")
+    
 })
 .listen(3000,"localhost",(err)=>{
     console.log("请访问 http://localhost:3000")
