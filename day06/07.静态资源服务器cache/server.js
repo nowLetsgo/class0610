@@ -6,7 +6,6 @@ const {port,host} = require("./config");
 
 const middleWare = require("./middleware")
 
-
 //创建一个服务
 const server = http.createServer(middleWare)
 
