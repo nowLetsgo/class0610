@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <form action="###" id="form">
+        <div>
+            <label for="user">用户名</label>
+            <input type="text" name="user" id="user">
+        </div>
+        <div>
+            <label for="pass">密码</label>
+            <input type="password" name="pass" id="pass">
+        </div>
+        <button id="btn">登录</button>
+    </form>
+    
+    <script>
+        const oForm = document.getElementById("form");
+        const oUser = document.getElementById("user");
+        const oPass = document.getElementById("pass");
+        oForm.onsubmit = function(){
+            //拼接要验证的数据
+            //但是get请求，数据是直接书写在url地址上
+            //1.实例化一个异步请求对象，使用这个对象来进行ajax请求
+            const xhr = new XMLHttpRequest();
+
+            //2.打开路径 使用open方法
+            xhr.open("GET","http://192.168.16.38:3001/login?user="+oUser.value+"&pass="+oPass.value,true);
+
+            //3.发送数据和请求 使用send方法
+            xhr.send(null);
+
+            //4.onreadystatechange事件 当readyState改变的时候会自动的触发当前事件
+            xhr.onreadystatechange = function(){
+                
+                if(xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300){
+                     console.log(xhr.responseText);//接受json格式数据 txt
+                }
+            }
+
+            return false;//阻止默认事件 阻止form的提交
+        }
+    </script>
+</body>
+</html>
