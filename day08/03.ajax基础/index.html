@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送ajax请求</button>
+    <script>
+        const oBtn = document.getElementById("btn");
+        oBtn.onclick = function(){
+            //1.实例化一个异步请求对象，使用这个对象来进行ajax请求
+            const xhr = new XMLHttpRequest();
+
+            //2.打开路径 使用open方法
+            //open有三个参数，第一个参数是请求方式，第二个参数是请求地址，第三个参数是同步还是异步
+            xhr.open("GET","http://192.168.16.38:3001/login",true);
+
+            //3.发送数据和请求 使用send方法
+            //如果get请求，则请求的数据在url拼接，send参数为空或null
+            //如果post请求，则在send中书写数据
+            xhr.send(null);
+
+            //4.onreadystatechange事件 当readyState改变的时候会自动的触发当前事件
+            xhr.onreadystatechange = function(){
+                //xhr.readyState：请求的状态码
+                    /*
+                        0: 刚刚设置了xhr
+                        1: 设置完成请求的信息
+                        2: 发送请求并得到部分请求内容（请求首行，请求报文）
+                        3: 得到响应报文体的部分内容（每次传输的是64kb，所以如果数据比较小，则已经接受完成了）
+                        4: 数据接受完成 或者 ajax请求失败
+                    */
+                // xhr.status：在客户端ajax请求的时候得到的响应状态码
+                    //只要是2XX 就说明数据响应成功
+                
+                //一般会在这个事件中 获取响应内容
+                //成功接受响应判断
+                if(xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300){
+                    //两种接受数据方法 一种是接受json的数据  一种是接受xml的数据、
+                    console.log(xhr.responseText);//接受json格式数据
+                    // console.log(xhr.responseXML);//接受xml格式数据
+                }
+            }
+
+
+        }
+    </script>
+</body>
+</html>

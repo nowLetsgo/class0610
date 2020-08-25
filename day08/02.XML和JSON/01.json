@@ -1,0 +1,76 @@
+{
+    "person": {
+        "student": [{
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv",
+                "score": {
+                    "math": 100,
+                    "en": 100,
+                    "ch": 100
+                }
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+        ],
+        "teacher": [{
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+            {
+                "name": "xiaowang",
+                "age": 18,
+                "sex": "nv"
+            },
+        ]
+    }
+}
