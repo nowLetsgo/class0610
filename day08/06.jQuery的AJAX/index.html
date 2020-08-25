@@ -20,14 +20,24 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script>
         $(()=>{
+            const userMes = {
+                user:"lucy",
+                age:18
+            }
             $("#form").submit(()=>{
-                $.ajax({
+                /* $.ajax({
                     //请求地址
                     url:"http://192.168.16.38:3001/login",
                     //请求方式
-                    method:"GET",
+                    method:"POST",
                     //请求数据
-                    data:"user=lily&age=15",
+                    // data:"user=lily&age=15",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "Content-Type":"x-www-form-urlencoded"
+                    },
+                    data:JSON.stringify(userMes),
+                    
                     //成功回调
                     success(data){
                         console.log(data);
@@ -36,7 +46,18 @@
                     error(err){
                         console.log(err);
                     }
+                }) */
+
+
+                /* $.get("http://192.168.16.38:3001/login","user=lily&age=15",(data)=>{
+                    console.log(data)
+                }) */
+
+                $.post("http://192.168.16.38:3001/login",JSON.stringify(userMes),(data)=>{
+                    console.log(data)
                 })
+
+
                 return false;
             })
         })

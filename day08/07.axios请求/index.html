@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <div>
+            <label for="user">用户名</label>
+            <input type="text" name="user" id="user">
+        </div>
+        <div>
+            <label for="pass">密码</label>
+            <input type="password" name="pass" id="pass">
+        </div>
+        <button id="btn">登录</button>
+    </form>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script>
+        $(() => {
+            const userMes = {
+                user: "lucy",
+                age: 18
+            }
+            $("#form").submit(() => {
+                // axios默认直接请求，并且返回一个promise对象
+                /* axios({
+                    url: "http://192.168.16.38:3001/login",
+                    method: "GET",
+                    params: {
+                        "user": "lily",
+                        "age": 18
+                    }
+                }).then((mes)=>{
+                    // mes就是成功的返回响应值的封装 其中mes.data就是需要的数据
+                    console.log(mes.data)
+                }).catch((err)=>{
+                    console.log(err);
+                }) */
+
+
+                /* axios({
+                    url: "http://192.168.16.38:3001/login",
+                    method: "POST",
+                    data: {
+                        "user": "lily",
+                        "age": 18
+                    }
+                }).then((mes)=>{
+                    // mes就是成功的返回响应值的封装 其中mes.data就是需要的数据
+                    console.log(mes.data)
+                }).catch((err)=>{
+                    console.log(err);
+                }) */
+
+
+                /* axios.get("http://192.168.16.38:3001/login",{
+                    params:{"user": "lucy","age": 18}
+                })
+                .then((mes)=>{
+                    // mes就是成功的返回响应值的封装 其中mes.data就是需要的数据
+                    console.log(mes.data)
+                }).catch((err)=>{
+                    console.log(err);
+                })  */
+
+
+                axios.post("http://192.168.16.38:3001/login",{"user": "laowang","age": 18})
+                .then((mes)=>{
+                    // mes就是成功的返回响应值的封装 其中mes.data就是需要的数据
+                    console.log(mes.data)
+                }).catch((err)=>{
+                    console.log(err);
+                }) 
+
+
+
+                return false;
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>
