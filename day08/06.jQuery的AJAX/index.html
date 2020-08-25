@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <form action="###" id="form">
+        <div>
+            <label for="user">用户名</label>
+            <input type="text" name="user" id="user">
+        </div>
+        <div>
+            <label for="pass">密码</label>
+            <input type="password" name="pass" id="pass">
+        </div>
+        <button id="btn">登录</button>
+    </form>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $(()=>{
+            $("#form").submit(()=>{
+                $.ajax({
+                    //请求地址
+                    url:"http://192.168.16.38:3001/login",
+                    //请求方式
+                    method:"GET",
+                    //请求数据
+                    data:"user=lily&age=15",
+                    //成功回调
+                    success(data){
+                        console.log(data);
+                    },
+                    //失败回调
+                    error(err){
+                        console.log(err);
+                    }
+                })
+                return false;
+            })
+        })
+    </script>
+</body>
+</html>

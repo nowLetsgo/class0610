@@ -1,9 +1,14 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const { url } = require("inspector");
 http.createServer((req, res) => {
         console.log(req.url);
         if (req.url.startsWith('/login')) {
+            //req.method是判读请求的方式
+            if(req.method === 'GET'){
+                console.log("GET请求")
+            }
             const userSQLMessage = {
                 user: "laoli",
                 pass: "12345"
@@ -24,8 +29,6 @@ http.createServer((req, res) => {
                 pass:pass2
             } = userSQLMessage;
 
-            console.log(userSQLMessage,userClientMessage)
-            console.log(user1,user2)
             if (user1 === user2 && pass1 === pass2) {
                 res.setHeader("Content-Type", "application/json;charset=utf-8")
                 const resMes = {"mes":"登录成功","code":200};
