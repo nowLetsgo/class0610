@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">登录</button>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $(() => {
+            $("#btn").click(() => {
+                const xhr = new XMLHttpRequest();
+                xhr.open("post", "http://192.168.16.38:3001", true);
+                xhr.send();
+                xhr.onreadystatechange = function () {
+                    if(xhr.readyState === 4 && xhr.status >= 200 && xhr.status <300){
+                        console.log(xhr.responseText);
+                    }
+                }
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">登录</button>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        // 4.在全局声明一个回调函数，让script标签的src携带这个函数名去请求
+        function callBack (data){
+            console.log(data);
+        }
+        $(() => {
+            $("#btn").click(() => {
+                //1.创建一个script标签
+                const newScript = document.createElement("script");
+                //2.给script一个src 让js去跨域  
+                //src的请求都是get请求，所以把回调函数 和需要发送给服务端的值 都拼接在src上
+                newScript.src = "http://suggestion.baidu.com/su?wd=1&cb=callBack";
+                //3.只有把script添加到页面中 才可以发送请求
+                document.body.appendChild(newScript);
+            })
+        })
+    </script>
+    <script src = './index.js'></script>
+</body>
+
+</html>
